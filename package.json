@@ -4,15 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc --build && node ./dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development tsnd -r tsconfig-paths/register --respawn src/main.ts",
+    "docker:dev": "cross-env NODE_ENV=docker-desktop tsnd -r tsconfig-paths/register --respawn src/main.ts",
+    "build": "npm-run-all resetFolder compile && tsc-alias",
+    "prod:start": "cross-env NODE_ENV=production node dist/main.js",
+    "compile": "tsc",
+    "resetFolder": "rimraf dist/*",
+    "lint": "npx eslint src/** --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^22.5.0",
+    "cross-env": "^7.0.3",
     "koa": "^2.15.3",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.5.4"
   }
 }
