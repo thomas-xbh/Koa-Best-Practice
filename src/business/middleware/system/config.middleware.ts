@@ -33,9 +33,7 @@ export const getListMid = async (ctx: Context, next: () => Promise<void>) => {
 };
 
 // 根据参数键名查询参数值
-export const getConfigKeyMid = async (ctx: Context, next: () => Promise<void>) => {
-  console.log('执行了');
-  
+export const getConfigKeyMid = async (ctx: Context, next: () => Promise<void>) => {  
   try {
     const { key } = ctx.request.body;
     const res = (await queryConditionsData(SysConfig, { config_key: key })) as IconfigSer;
