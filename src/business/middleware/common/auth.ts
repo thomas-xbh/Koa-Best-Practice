@@ -21,6 +21,8 @@ export const auth = async (ctx: Context, next: () => Promise<void>) => {
     console.log('权限白名单', ctx.request.url);
     
     const user = jwt.verify(token, env().JWT_SECRET) as IuserTokenType;
+    console.log(user,'user');
+    
 
     // 查询 sessionId 过期了没
     if (!(await judgeKeyOverdue(user.session))) {
